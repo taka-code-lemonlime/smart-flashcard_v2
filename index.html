@@ -605,16 +605,16 @@
             }
 
             if (lang === 'ja-JP') {
-                // Windows Chromeの「Google 日本語」、Edgeの「Microsoft Natural」、OS標準の「Microsoft Haruka」等を優先検出
-                const preferredJa = ['google 日本語', 'microsoft haruka', 'microsoft ichiro', 'natural', 'ayumi', 'sayaka'];
+                // Windows Chromeの「Google 日本語」、iOSの「拡張/Enhanced」高品質ボイス、Edgeの「Microsoft Natural」、OS標準 of 「Microsoft Haruka」等を優先検出
+                const preferredJa = ['google 日本語', 'enhanced', '拡張', 'siri', 'microsoft haruka', 'microsoft ichiro', 'natural', 'ayumi', 'sayaka'];
                 for (let pref of preferredJa) {
                     const voice = voicesList.find(v => v.lang.startsWith('ja') && v.name.toLowerCase().includes(pref));
                     if (voice) return voice;
                 }
                 return voicesList.find(v => v.lang.startsWith('ja')) || null;
             } else {
-                // 英語（アメリカ英語優先）
-                const preferredEn = ['google us english', 'microsoft zira', 'microsoft david', 'natural', 'en-us'];
+                // 英語（アメリカ英語優先。iOSの「Siri」や「Enhanced/拡張」高品質ボイスも優先）
+                const preferredEn = ['google us english', 'enhanced', '拡張', 'siri', 'microsoft zira', 'microsoft david', 'natural', 'en-us'];
                 for (let pref of preferredEn) {
                     const voice = voicesList.find(v => v.lang.toLowerCase().replace('_', '-').startsWith('en-us') && v.name.toLowerCase().includes(pref));
                     if (voice) return voice;
